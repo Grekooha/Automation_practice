@@ -3,40 +3,24 @@ package com.automationpractice
 import org.scalatest.flatspec.AnyFlatSpec
 
 class CartPage() extends AnyFlatSpec with OpenURL {
+
+  val productsName : String = "Faded Short Sleeve T-shirts"
+  val attributes : String = "Orange, S"
+  val price : String = "$16.51"
+
   private val page = new Cart()
 
-  "User" should "check the availability of information in the item" in {
+  "User" should "view product information, add to cart and check attributes." in {
 
     page
       .itemExist()
-
-  }
-
-  it should "press add to cart" in {
-    page
       .addToCart()
-
-  }
-
-  "Checking" should "check info" in {
-
-    page
-      .checkingInfo()
+      .checkProductName(productsName)
+      .checkAttributes(attributes)
+      .checkPrice(price)
       .closeAddWindow()
-
-  }
-
-  "User" should "press cart field" in {
-
-    page
       .goToCart()
-
-  }
-
-  "Checking" should "check cart info" in {
-
-    page
-      .checkingCartInfo()
+      .checkCartInfo(price)
 
   }
 }

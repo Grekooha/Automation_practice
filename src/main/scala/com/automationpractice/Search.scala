@@ -6,7 +6,7 @@ import org.openqa.selenium.By
 
 class Search {
 
-  private val selectSearchField = $(By.id("center_column"))
+  private val searchField = $(By.id("center_column"))
   private val entryField = $(By.id("search_query_top"))
 
   def inputText(searchText: String): Search = {
@@ -20,7 +20,7 @@ class Search {
 
   def hasResult(assertHasResultText: String): Search = {
 
-    selectSearchField
+    searchField
       .shouldHave(Condition.text(assertHasResultText))
       .shouldBe(Condition.visible)
     this

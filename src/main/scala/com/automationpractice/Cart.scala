@@ -9,66 +9,42 @@ class Cart {
   private val item = $(byClassName("product-container"))
   private val closeWindow = $(byTitle("Close window"))
   private val cartField = $(byTitle("View my shopping cart"))
-  private val clickAddToCart = $(byTitle("Add to cart"))
-  private val cssProductsName = $("#layer_cart_product_title")
-  private val cssAttributes = $("#layer_cart_product_attributes")
-  private val cssPrice = $("#layer_cart_product_price")
-  private val cssPriceCart = $(byId("total_product"))
+  private val addToCartButton = $(byTitle("Add to cart"))
+  private val productsName = $("#layer_cart_product_title")
+  private val attributes = $("#layer_cart_product_attributes")
+  private val price = $("#layer_cart_product_price")
+  private val priceCart = $(byId("total_product"))
 
-  val productsName : String = "Faded Short Sleeve T-shirts"
-  val attributes : String = "Orange, S"
-  val price : String = "$16.51"
+  def itemExist(): Cart = {item.exists(); this}
 
-  def itemExist(): Cart = {
+  def addToCart(): Cart = { item.hover(); addToCartButton.click(); this}
 
-    item
-      .exists()
+  def closeAddWindow(): Cart = {closeWindow.click(); this}
 
+  def goToCart(): Cart = {cartField.click(); this}
+
+  def checkProductName (nameProductField : String): Cart = {
+
+    productsName.waitUntil(visible, 30000).isEnabled
+    productsName.shouldHave(text(nameProductField))
     this
 
   }
 
-  def addToCart(): Cart ={
+  def checkAttributes (attributesField: String): Cart = {
 
-    item
-      .hover()
-    clickAddToCart
-      .click()
-
+    attributes.shouldHave(text(attributesField))
     this
 
   }
 
-  def closeAddWindow(): Cart={
+  def checkPrice (priceField: String): Cart = {
 
-    closeWindow
-      .click()
+    price.shouldHave(text(priceField))
     this
 
   }
 
-  def goToCart(): Cart ={
+  def checkCartInfo(price: String): Cart = {priceCart.shouldHave(text(price)); this}
 
-    cartField
-      .click()
-    this
-
-  }
-
-  def checkingInfo(): Cart = {
-
-    cssProductsName.waitUntil(visible, 30000).isEnabled
-    cssProductsName.shouldHave(text("Faded Short Sleeve T-shirts"))
-    cssAttributes.shouldHave(text("Orange, S"))
-    cssPrice.shouldHave(text("$16.51"))
-    this
-
-  }
-
-  def checkingCartInfo(): Cart = {
-
-    cssPriceCart.shouldHave(text(price))
-    this
-
-  }
 }
