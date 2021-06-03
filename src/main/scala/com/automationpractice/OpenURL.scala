@@ -10,8 +10,4 @@ trait OpenURL extends Suite with BeforeAndAfterAll {
     open(url)
 
   }
-  def qw: Unit = {
-    println("hello")
-  }
-
 }
