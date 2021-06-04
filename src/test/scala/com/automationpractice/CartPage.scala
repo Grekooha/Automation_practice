@@ -13,14 +13,18 @@ class CartPage() extends AnyFlatSpec with OpenURL {
   "User" should "view product information, add to cart and check attributes." in {
 
     page
-      .itemExist()
-      .addToCart()
+//      .itemExist()
+//      .addToCart()
+//      .checkProductName(productsName)
+//      .checkAttributes(attributes)
+//      .checkPrice(price)
+//      .closeAddWindow()
+//      .goToCart()
+//      .checkCartInfo(price)
+      .selectItem("\n\t\t\t\t\t\t\tBlouse\n\t\t\t\t\t\t")
       .checkProductName(productsName)
-      .checkAttributes(attributes)
-      .checkPrice(price)
       .closeAddWindow()
       .goToCart()
       .checkCartInfo(price)
-
   }
 }

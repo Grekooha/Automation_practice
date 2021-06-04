@@ -8,6 +8,7 @@ class SearchPage() extends AnyFlatSpec with OpenURL {
   val resultTextPositive: String = "Faded Short Sleeve T-shirts"
   val searchTextNegative: String = "\"CREATE DATABASE myFalseDB;"
   val searchResultNegative: String = s"\n\t\t\t\t\tNo results were found for your search \"${searchTextNegative}\"\n\t\t\t"
+  val hasNotResult: String = "Blouse"
 
   private val page = new Search()
 
@@ -16,6 +17,7 @@ class SearchPage() extends AnyFlatSpec with OpenURL {
     page
       .inputText(searchTextPositive)
       .hasResult(resultTextPositive)
+      .hasNotResult(hasNotResult)
       .inputText(searchTextNegative)
       .hasResult(searchResultNegative)
 

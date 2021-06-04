@@ -1,7 +1,7 @@
 package com.automationpractice
 
-import com.codeborne.selenide.Selenide.$
 import com.codeborne.selenide.Condition
+import com.codeborne.selenide.Selenide.$
 import org.openqa.selenium.By
 
 class Search {
@@ -14,6 +14,13 @@ class Search {
     entryField
       .setValue(searchText)
       .pressEnter()
+    this
+
+  }
+  def hasNotResult(assertHasNotResult: String): Search = {
+
+    searchField
+      .shouldNotHave(Condition.text(assertHasNotResult))
     this
 
   }

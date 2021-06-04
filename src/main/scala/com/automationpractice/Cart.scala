@@ -1,8 +1,8 @@
 package com.automationpractice
 
 import com.codeborne.selenide.Condition.{text, visible}
-import com.codeborne.selenide.Selectors.{byClassName, byId, byTitle}
-import com.codeborne.selenide.Selenide.$
+import com.codeborne.selenide.Selectors.{byClassName, byId, byTitle, byXpath}
+import com.codeborne.selenide.Selenide.{$, $$}
 
 class Cart {
 
@@ -14,14 +14,36 @@ class Cart {
   private val attributes = $("#layer_cart_product_attributes")
   private val price = $("#layer_cart_product_price")
   private val priceCart = $(byId("total_product"))
+  private val allItem = $$(byClassName("product-container"))
 
-  def itemExist(): Cart = {item.exists(); this}
+  def itemExist(): Cart = {
 
-  def addToCart(): Cart = { item.hover(); addToCartButton.click(); this}
+    item.exists()
+    this
 
-  def closeAddWindow(): Cart = {closeWindow.click(); this}
+  }
 
-  def goToCart(): Cart = {cartField.click(); this}
+  def addToCart(): Cart = {
+
+    item.hover()
+    addToCartButton.click()
+    this
+
+  }
+
+  def closeAddWindow(): Cart = {
+
+    closeWindow.click()
+    this
+
+  }
+
+  def goToCart(): Cart = {
+
+    cartField.click()
+    this
+
+  }
 
   def checkProductName (nameProductField : String): Cart = {
 
@@ -45,6 +67,19 @@ class Cart {
 
   }
 
-  def checkCartInfo(price: String): Cart = {priceCart.shouldHave(text(price)); this}
+  def checkCartInfo(price: String): Cart = {
+
+    priceCart.shouldHave(text(price))
+    this
+
+  }
+
+  def selectItem(selectItem: String): Cart = {
+
+    allItem.find(text(selectItem)).hover()
+    addToCartButton.hover().click()
+    this
+
+  }
 
 }
