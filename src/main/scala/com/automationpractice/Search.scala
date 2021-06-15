@@ -17,6 +17,7 @@ class Search {
     this
 
   }
+
   def hasNotResult(assertHasNotResult: String): Search = {
 
     searchField

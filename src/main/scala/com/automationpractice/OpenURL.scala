@@ -1,4 +1,5 @@
 package com.automationpractice
+
 import org.scalatest.{BeforeAndAfterAll, Suite}
 import com.codeborne.selenide.Selenide.open
 
